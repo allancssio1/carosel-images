@@ -1,0 +1,31 @@
+{% extends 'index.njk' %}
+
+{% block header %}
+  <header class="header">
+    <div></div>
+    <nav>
+      <a href="/" class="button">Home</a>
+    </nav>
+  </header>
+{% endblock  %}
+  {% block content %}
+  <main class="container login">
+    <h2>Login</h2>
+    <form action="/user/:id/entre" method="post">
+      <div class="input_field">
+        <input type="text" name="username" id="username" placeholder="Nome de usuário">
+        <div class="underline"></div>
+      </div>
+      <div class="input_field">
+        <input type="password" name="password" id="password" placeholder="Senha">
+        <div class="underline"></div>
+      </div>
+
+      <button type="submit" class="button">Entrar</button>
+    </form>
+    <div class="register">
+      <h3>Cadastrar-se</h3>
+      <a href="/user/create" class="button">Cadastrar</a>
+    </div>
+  </main>
+  {% endblock  %}

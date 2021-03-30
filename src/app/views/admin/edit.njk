@@ -1,0 +1,54 @@
+{% extends "index.njk" %}
+
+{% block header %}
+  <header class="header">
+    <div>
+      <h2>Olá, {{user.name}}</h2>
+    </div>
+    <div></div>
+    <nav>
+      <a href="/" class="button" id="exit">Sair</a>
+    </nav>
+  </header>
+{% endblock  %}
+
+{% block content %}
+  <main class="container-edit" >
+
+    <div class="header-edit">
+      <form action="/user?_method=PUT" method="post">
+        {%  include 'admin/fields.njk' %}
+        <input type="hidden" name="id" value="{{user.id}}">
+        <button type="submit" class="button">Atualizar</button>
+        <button type="submit" class="button delete">Deletar conta</button>
+      </form>
+      
+      <form
+        method="post"
+        class="input_field"
+        id="form-upload"
+        action="/photos?_method=DELETE"
+        enctype="multipart/form-data">
+        <section class="image-container-edit">
+          <div id="item-image-edit" >
+          <input type="hidden" name="userid" id="userId" value="{{user.id}}">
+            {% for image in images %}
+              <div class="image-edit" id="{{image.id}}">
+                <img src="{{image.src}}" alt="{{image.title}}">
+                <i
+                  class="material-icons"
+                  id="icon-delete"
+                  onclick="removeOldPhoto(event)">delete</i>
+              </div>
+            {% endfor %}
+            <input type="hidden" name="removed_images">
+          </div>  
+          <button type="submit" class="button delete" id="id">confirmar exclusão</button>
+        </section>
+      </form>
+    </div>
+
+    
+  </main>
+  
+{% endblock  %}

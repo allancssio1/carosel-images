@@ -1,0 +1,63 @@
+{% extends "index.njk" %}
+
+{% block header %}
+  <header class="header">
+    <div>
+      <h2>Olá, {{user.name}}</h2>
+    </div>
+    <div class="null"></div>
+    <nav>
+      <a href="/" class="button" id="exit">Sair</a>
+    </nav>
+  </header>
+{% endblock  %}
+
+{% block content %}
+  <main class="container-show" >
+
+    <div class="header-show">
+      
+      <section class="user">
+        <div class="input_field">
+          <div>Nome: <span>{{user.name}}</span></div>
+        </div>
+    
+        <div class="input_field">
+          <div>Nome de usuário: <span>{{user.username}}</span></div>
+        </div>
+    
+        <div class="input_field">
+          <div>E-mail: <span>{{user.email}}</span></div>
+        </div>
+      </section>
+      
+      <form
+        method="post"
+        class="input_field"
+        id="form-upload"
+        action="/photos"
+        enctype="multipart/form-data">
+        <input
+          type="file"
+          name="photos"
+          multiple accept="image/*">
+        <input type="hidden" name="userId" id="userId" value="{{user.id}}">
+        <div class="buttons-show">
+          <button type="submit" class="button">Enviar</button>
+          <button type="button" id="link-edit" class="button">Editar Conta</button>
+        </div>
+      </form>
+    </div>
+
+    <section class="preview">
+      <div id="items" >
+        {% for image in images %}
+          <div class="image" id="{{image.id}}">
+            <img src="{{image.src}}" alt="{{image.title}}">
+          </div>
+        {% endfor %}
+      </div>
+    </section>
+  </main>
+
+{% endblock  %}

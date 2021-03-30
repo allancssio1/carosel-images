@@ -1,0 +1,25 @@
+{% extends "index.njk" %}
+
+{% block header %}
+  <header class="header">
+    <div></div>
+    <nav>
+      <a href="/" class="button">Home</a>
+    </nav>
+  </header>
+{% endblock  %}
+
+{% block content %}
+<main class="container create">
+  <h2>Cadastre-se</h2>
+  <form action="/user" method="post">
+    {% include 'admin/fields.njk' %}
+
+    <button type="submit" class="button">Cadastrar</button>
+  </form>
+  <div class="register">
+    <h3>Entre na sua conta</h3>
+    <a href="/user/entre" class="button">Login</a>
+  </div>
+</main>
+{% endblock  %}
